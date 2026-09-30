@@ -186,7 +186,7 @@ $: $manual_render && updateRegisters();
 {#each registers as r}
     <p>
       <span class="name infotooltip" tabindex="0" aria-describedby="info-tooltip" class:updated={r.updated}>{r.name}</span> : 
-      <span class="int">{r.str}</span>
+      <span class="int">{r.str} {parseInt(r.str, 16)}</span>
     </p>
 {/each}
     <br/>
