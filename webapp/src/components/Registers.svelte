@@ -178,6 +178,11 @@ function updateRegisters() {
 	eflags = eflags;
 }
 
+function toAscii(value) {
+    const decimalValue = Number.parseInt(value, 16);
+    return decimalValue >= 32 && decimalValue <= 126 ? String.fromCharCode(decimalValue) : "";
+}
+
 //rerender registers on machine step
 $: $manual_render && updateRegisters();
 </script>
@@ -186,7 +191,7 @@ $: $manual_render && updateRegisters();
 {#each registers as r}
     <p>
       <span class="name infotooltip" tabindex="0" aria-describedby="info-tooltip" class:updated={r.updated}>{r.name}</span> : 
-      <span class="int">{r.str} {parseInt(r.str, 16)}</span>
+      <span class="int">{r.str} {parseInt(r.str, 16)} {toAscii(r.str)}</span>
     </p>
 {/each}
     <br/>
